@@ -76,9 +76,10 @@ class OnScroll {
     
     //SETUP WINDOW SCROLL EVENT LISTENERS AND CHECKS FOR EVENTS
     _setupListeners() {
+        var x = this;
         addEventListener("scroll", () => {
             _WINDOW_SCROLL_POSITION_  = window.pageYOffset;
-            for (const e of this._events) {
+            for (const e of x._events) {
                 // EACH EVENT HAS REFRENCE TO IT'S OWN EVENT CHECKER
                 e._eventChecker(e);     //CHECKS STATES AND EXECUTES EVENTS
             }
@@ -119,19 +120,24 @@ class OnScroll {
             e._targetElem.setAttribute("style", e._initialStyle);    
             e._eventState = __EVENT_STATES__.__INITIAL__; 
         } else if (offset > 0 && offset < e._duration) {
-            OnScroll._playTransitionAt(e, offset / e._duration);
+            //OnScroll._playTransitionAt(e, Math.round(offset / e._duration * 1000));
+            // e._targetElem.style["display"] = "none";
+            //e._targetElem.style["transform"] = ` translate3d(0,0,0) translateY(${(offset * 80/e._duration)}%)`
+            e._targetElem.style["width"] = `${(offset * 80/e._duration)}%`
+            //e._targetElem.style["transition-duration"] = "0s";
+            // e._targetElem.style["display"] = "block";
         } else if (offset > e._duration && e._eventState !== __EVENT_STATES__.__FINISHED__) {
             e._targetElem.setAttribute("style", e._transformation);
             e._eventState = __EVENT_STATES__.__FINISHED__;
         }
     }
     
-    
     // SETS THE STYLE OF THE ELEMENT IN BETWEEN THE TRANSITION
     // DELAY LIES BETWEEN  0 AND 1
     // 0 FOR INITIAL STATE
     // 1 FOR FINISED TRANSITION
     static _playTransitionAt(e, delay) {
+		
         e._targetElem.setAttribute("style", e._initialStyle);
         for(const x of Object.keys(e._initialStyleObject))
            e._targetElem.style[x] = getComputedStyle(e._targetElem).getPropertyValue(x);
@@ -139,11 +145,16 @@ class OnScroll {
         e._targetElem.setAttribute("style", e._transformation);
         e._targetElem.style["transition-duration"] = "1s";
         e._targetElem.style["transition-timing-function"] = e._transitionEase;
-        e._targetElem.style["transition-delay"] = `${-delay}s`;
+        e._targetElem.style["transition-delay"] = -delay + "ms";
 
         for(const x of Object.keys(e._transformationObject))
             e._targetElem.style[x] = getComputedStyle(e._targetElem).getPropertyValue(x);
-        e._eventState = __EVENT_STATES__.__RUNNING__;
+        //e._eventState = __EVENT_STATES__.__RUNNING__;
+
+        //e._targetElem.style.removeProperty("transition-duration");
+        //e._targetElem.style.removeProperty("transition-delay");
+        //e._targetElem.style.removeProperty("transition-timing-function");
+        
     }
 
 
@@ -571,6 +582,9 @@ class OnScrollEvent {
             this._transformationObject = obj;
             this._transformation = (this._initialStyle === ""? "" : this._initialStyle + ";") + OnScroll._objectToInlineCSS(obj);
             this._transitionEase = ease;
+            console.log(this._duration);
+            //this._savedStyles = OnScroll._createStyles(this._targetElem, this._duration, this._transformationObject, this._transitionEase);
+            console.log(this._savedStyles);
         }
         return this;
     }
@@ -578,7 +592,7 @@ class OnScrollEvent {
     
     setDuration(x) { 
         // SETS DURATION FOR TRANSITION
-        this._duration = x;
+        this._duration = OnScroll._parseUnit(x, this._targetElem);
         return this;
     }
 
@@ -586,7 +600,7 @@ class OnScrollEvent {
     setScrollLength(x) {
         // SET SCROLL LENGTH FROM TRANSITION
         this._onscroll = true;
-        this._duration = x;
+        this._duration = OnScroll._parseUnit(x, this._targetElem) * 1;
         return this;
     }
 

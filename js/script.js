@@ -1,7 +1,7 @@
 const onscroll = new OnScroll();
 
 const timelineLeft = new OnScrollEventTimeline();
-timelineLeft.add({"width": "50%"}, 10,  "cubic")
+timelineLeft.add({"width": "50%"}, 3,  "cubic")
             .add({"background-color": "red", "color": "yellow"}, 2, "cubic")
             .add({"transform": "rotateY(360deg) scale(1.5)"}, 5, "cubic-bezier(.18, .89, .32, 1.28)");
 
@@ -29,36 +29,35 @@ timelineRight.add({"right": "50%"}, 0.5)
 //                 .replaceCSS("box", "box2")
 const scene1 = new OnScrollEvent()
                 .setTarget("#parallax1 > div")
-                .setTrigger("#parallax1")
+                .setTrigger("#parallax1")      
                 .setTriggerPosition(100)
+                .setScrollLength("200vh")
                 .setTransformation({
-                    "transform": `translateY(120%)`,
+                    "transform": `translate3d(0,0,0) translateY(80%)`,
                 }, "linear")
-                .setScrollLength("200%")
-                // .showIndicators()
-                .addTo(onscroll);
-
-
-
-                const scene2 = new OnScrollEvent()
-                .setTarget("#parallax2 > div")
-                .setTrigger("#parallax2")
-                .setTriggerPosition(100)
-                .setTransformation({
-                    "transform": `translateY(120%)`,
-                }, "linear")
-                .setScrollLength("200%")
-                // .showIndicators()
-                .addTo(onscroll);
                 
-                const scene3 = new OnScrollEvent()
-                .setTarget("#parallax3 > div")
-                .setTrigger("#parallax3")
+                // .showIndicators()
+                .addTo(onscroll);
+				const scene2 = new OnScrollEvent()
+                .setTarget("#parallax2 > div")
+                .setTrigger("#parallax2")      
                 .setTriggerPosition(100)
+                .setScrollLength("200vh")
                 .setTransformation({
-                    "transform": `translateY(120%)`,
+                    "transform": `translate3d(0,0,0) translateY(80%)`,
                 }, "linear")
-                .setScrollLength("200%")
+                
+                // .showIndicators()
+                .addTo(onscroll);
+				const scene3 = new OnScrollEvent()
+                .setTarget("#parallax3 > div")
+                .setTrigger("#parallax3")      
+                .setTriggerPosition(100)
+                .setScrollLength("200vh")
+                .setTransformation({
+                    "transform": `translate3d(0,0,0) translateY(80%)`,
+                }, "linear")
+                
                 // .showIndicators()
                 .addTo(onscroll);
 
@@ -95,9 +94,7 @@ const scene1 = new OnScrollEvent()
 //                 .setTarget("#box1")
 //                 .setTrigger("#box1")
 //                 .setTriggerPosition(50)
-//                 .setTransformation({
-//                     "font-size": "200%"
-//                 }, "ease-out")
-//                 .setScrollLength(200)
+//                 .setTransformation(timelineLeft)
+//                 // .setScrollLength(200)
 //                 .showIndicators()
 //                 .addTo(onscroll);  
