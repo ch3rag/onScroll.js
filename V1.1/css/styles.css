@@ -1,0 +1,19 @@
+@import url("common.css");
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+}
+
+#parallax1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#parallax1 > p {
+    font-family: rajdhani;
+    font-size: 10vw;
+    margin: 0;
+    color: black;
+
+}

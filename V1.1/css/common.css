@@ -1,0 +1,115 @@
+/* SPACER */
+
+.spacer {
+    width: 100%;
+    height: 100px;
+    margin: 0;
+}
+
+.spacer.viewport {
+    min-height: 100vh;
+}
+
+.spacer.s0 {
+    height: 0px;
+}
+
+.spacer.s2 {
+    height: 200px;
+}
+
+/* BACKGROUNDS */
+
+.bg-blue {
+    background-color: #3883d8;
+}
+
+.bg-pink {
+    background-color: rgb(235, 74, 149);
+}
+
+.bg-red {
+    background-color: red
+}
+/* COLORS */
+
+.white {
+    color: white;
+}
+
+
+/* FONTS */
+
+.trebuchet {
+    font-family: "Trebuchet MS";
+}
+
+/* POSITION */
+
+.absolute {
+    position: absolute;
+}
+
+/* ALIGNMENT */
+
+.absolute-center-horizontal {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.horizontal-center {
+    margin: 0 auto;
+}
+
+/* SIZING */
+
+.one-third-width {
+    width: 33%;
+}
+
+/* BOXES */
+.box {
+    display: inline-block;
+    font-size: 100%;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px black;
+    margin-left: 100px;
+}
+.box-small {
+    width: 10%;
+    padding: 2%;
+}
+
+.box-medium {
+    width: 20%;
+    padding: 4%;
+}
+
+
+
+.parallax-parent {
+    height: 100vh;
+    overflow-y: hidden;
+    position: relative;
+}
+
+.parallax-background {
+    height: 100vh;
+    background-attachment: fixed;
+    margin: 0;
+    background-position-y: 0%;
+    background-size: 150%;
+    background-repeat: no-repeat;
+}
+
+.test {
+    font-size: 200%;
+    transition-duration: 2s;
+}
